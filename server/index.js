@@ -6,7 +6,7 @@
  * that ships to the client, never returned in a response.
  */
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import dotenv from 'dotenv';
 import express from 'express';
 
@@ -58,7 +58,13 @@ app.use('/catalog/images', express.static(catalog.CATALOG_IMAGES_DIR, { maxAge: 
 // ---------------------------------------------------------------------------
 
 app.get('/api/health', (_req, res) => {
-  res.json({ ok: true, model: getModel(), apiKeyConfigured: hasApiKey(), catalog: catalog.summary() });
+  res.json({
+    ok: true,
+    model: getModel(),
+    apiKeyConfigured: hasApiKey(),
+    catalog: catalog.summary(),
+    storage: { ephemeral: store.isEphemeral, location: store.describeStorage() },
+  });
 });
 
 /** The product list, for the report's slicer and the "what can it recognise" view. */
@@ -174,18 +180,30 @@ function asyncRoute(handler) {
 await store.init();
 catalog.load();
 
-app.listen(PORT, () => {
-  const cat = catalog.summary();
-  console.log(`\n  Shelf Execution AI  →  http://localhost:${PORT}`);
-  console.log(`  Model: ${getModel()}`);
-  console.log(
-    hasApiKey()
-      ? '  OPENAI_API_KEY: loaded from environment ✓'
-      : '  OPENAI_API_KEY: MISSING — copy .env.example to .env and add your key.',
-  );
-  console.log(
-    cat
-      ? `  Catalog: ${cat.productCount} products from ${cat.source} ✓\n`
-      : '  Catalog: none — run `npm run import:catalog -- "<file.xlsx>"` to enable SKU identification.\n',
-  );
-});
+/**
+ * The app is exported rather than started here, because a serverless platform
+ * imports it as a request handler and never calls listen(). `npm start` runs
+ * this file directly, which is the only case that should bind a port.
+ */
+export default app;
+
+const isDirectRun = process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href;
+
+if (isDirectRun) {
+  app.listen(PORT, () => {
+    const cat = catalog.summary();
+    console.log(`\n  Shelf Execution AI  →  http://localhost:${PORT}`);
+    console.log(`  Model: ${getModel()}`);
+    console.log(
+      hasApiKey()
+        ? '  OPENAI_API_KEY: loaded from environment ✓'
+        : '  OPENAI_API_KEY: MISSING — copy .env.example to .env and add your key.',
+    );
+    console.log(
+      cat
+        ? `  Catalog: ${cat.productCount} products from ${cat.source} ✓`
+        : '  Catalog: none — run `npm run import:catalog -- "<file.xlsx>"` to enable SKU identification.',
+    );
+    console.log(`  Storage: ${store.describeStorage()}\n`);
+  });
+}

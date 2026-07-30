@@ -1,0 +1,479 @@
+{
+  "source": "Product_Information.xlsx (OpenAI file file-8zjsraWovE2bsjLuKe15uz)",
+  "sourceFileId": "file-8zjsraWovE2bsjLuKe15uz",
+  "importedAt": "2026-07-30T15:12:43.994Z",
+  "extractedBy": "gpt-5.6-terra",
+  "sheets": [],
+  "productCount": 11,
+  "products": [
+    {
+      "id": "dozen-rose-bunch-red",
+      "name": "DOZEN ROSE BUNCH RED",
+      "sku": null,
+      "category": "ROSE",
+      "price": null,
+      "description": "Red roses",
+      "notes": null,
+      "images": [
+        {
+          "url": "/catalog/images/dozen-rose-bunch-red-1.png",
+          "alt": "A bouquet of red roses Description automatically generated"
+        }
+      ]
+    },
+    {
+      "id": "dozen-rose-bunch-color",
+      "name": "DOZEN ROSE BUNCH COLOR",
+      "sku": null,
+      "category": "ROSE",
+      "price": null,
+      "description": "Single color roses excluding red",
+      "notes": null,
+      "images": [
+        {
+          "url": "/catalog/images/dozen-rose-bunch-color-1.png",
+          "alt": "A bouquet of pink roses Description automatically generated"
+        }
+      ]
+    },
+    {
+      "id": "dozen-rose-bunch-rainbow",
+      "name": "DOZEN ROSE BUNCH RAINBOW",
+      "sku": null,
+      "category": "ROSE",
+      "price": null,
+      "description": "Multiple color roses",
+      "notes": null,
+      "images": [
+        {
+          "url": "/catalog/images/dozen-rose-bunch-rainbow-1.png",
+          "alt": "A bouquet of different colored roses Description automatically generated"
+        }
+      ]
+    },
+    {
+      "id": "premium-rose-bouquet",
+      "name": "PREMIUM ROSE BOUQUET",
+      "sku": null,
+      "category": "ROSE",
+      "price": null,
+      "description": "Roses with green fillers",
+      "notes": null,
+      "images": [
+        {
+          "url": "/catalog/images/premium-rose-bouquet-1.png",
+          "alt": "A bouquet of flowers with green leaves Description automatically generated"
+        }
+      ]
+    },
+    {
+      "id": "cb-carnation",
+      "name": "CB CARNATION",
+      "sku": null,
+      "category": "CONSUMER BUNCH",
+      "price": null,
+      "description": "Carnations, 10 - 12 stems",
+      "notes": null,
+      "images": [
+        {
+          "url": "/catalog/images/cb-carnation-1.png",
+          "alt": "CB CARNATION reference photo"
+        }
+      ]
+    },
+    {
+      "id": "cb-minicarnation",
+      "name": "CB MINICARNATION",
+      "sku": null,
+      "category": "CONSUMER BUNCH",
+      "price": null,
+      "description": "Carnations, smaller flower heads, 15+ stems",
+      "notes": null,
+      "images": [
+        {
+          "url": "/catalog/images/cb-minicarnation-1.png",
+          "alt": "CB MINICARNATION reference photo"
+        },
+        {
+          "url": "/catalog/images/cb-minicarnation-2.png",
+          "alt": "CB MINICARNATION reference photo"
+        }
+      ]
+    },
+    {
+      "id": "cb-alstroemeria",
+      "name": "CB ALSTROEMERIA",
+      "sku": null,
+      "category": "CONSUMER BUNCH",
+      "price": null,
+      "description": "Alstroemerias",
+      "notes": null,
+      "images": [
+        {
+          "url": "/catalog/images/cb-alstroemeria-1.png",
+          "alt": "A bunch of pink flowers Description automatically generated"
+        }
+      ]
+    },
+    {
+      "id": "big-rainbow-pompom",
+      "name": "BIG RAINBOW POMPOM",
+      "sku": null,
+      "category": "CONSUMER BUNCH",
+      "price": null,
+      "description": "Pompoms",
+      "notes": null,
+      "images": [
+        {
+          "url": "/catalog/images/big-rainbow-pompom-1.png",
+          "alt": "BIG RAINBOW POMPOM reference photo"
+        }
+      ]
+    },
+    {
+      "id": "wanderlust",
+      "name": "WANDERLUST",
+      "sku": null,
+      "category": "MIXED BOUQUET",
+      "price": null,
+      "description": "3+ types of flowers. Rotating recipes",
+      "notes": "Choose 3 - 8 Escoger por colores (season), forma, flores?",
+      "images": [
+        {
+          "url": "/catalog/images/wanderlust-1.png",
+          "alt": "WANDERLUST reference photo"
+        },
+        {
+          "url": "/catalog/images/wanderlust-2.png",
+          "alt": "WANDERLUST reference photo"
+        },
+        {
+          "url": "/catalog/images/wanderlust-3.png",
+          "alt": "WANDERLUST reference photo"
+        },
+        {
+          "url": "/catalog/images/wanderlust-4.png",
+          "alt": "WANDERLUST reference photo"
+        },
+        {
+          "url": "/catalog/images/wanderlust-5.png",
+          "alt": "WANDERLUST reference photo"
+        },
+        {
+          "url": "/catalog/images/wanderlust-6.png",
+          "alt": "WANDERLUST reference photo"
+        },
+        {
+          "url": "/catalog/images/wanderlust-7.png",
+          "alt": "WANDERLUST reference photo"
+        },
+        {
+          "url": "/catalog/images/wanderlust-8.png",
+          "alt": "WANDERLUST reference photo"
+        },
+        {
+          "url": "/catalog/images/wanderlust-9.png",
+          "alt": "WANDERLUST reference photo"
+        },
+        {
+          "url": "/catalog/images/wanderlust-10.png",
+          "alt": "WANDERLUST reference photo"
+        },
+        {
+          "url": "/catalog/images/wanderlust-11.png",
+          "alt": "WANDERLUST reference photo"
+        },
+        {
+          "url": "/catalog/images/wanderlust-12.png",
+          "alt": "WANDERLUST reference photo"
+        },
+        {
+          "url": "/catalog/images/wanderlust-13.png",
+          "alt": "WANDERLUST reference photo"
+        },
+        {
+          "url": "/catalog/images/wanderlust-14.png",
+          "alt": "WANDERLUST reference photo"
+        },
+        {
+          "url": "/catalog/images/wanderlust-15.png",
+          "alt": "WANDERLUST reference photo"
+        },
+        {
+          "url": "/catalog/images/wanderlust-16.png",
+          "alt": "WANDERLUST reference photo"
+        },
+        {
+          "url": "/catalog/images/wanderlust-17.png",
+          "alt": "WANDERLUST reference photo"
+        },
+        {
+          "url": "/catalog/images/wanderlust-18.png",
+          "alt": "WANDERLUST reference photo"
+        },
+        {
+          "url": "/catalog/images/wanderlust-19.png",
+          "alt": "WANDERLUST reference photo"
+        },
+        {
+          "url": "/catalog/images/wanderlust-20.png",
+          "alt": "WANDERLUST reference photo"
+        },
+        {
+          "url": "/catalog/images/wanderlust-21.png",
+          "alt": "WANDERLUST reference photo"
+        },
+        {
+          "url": "/catalog/images/wanderlust-22.png",
+          "alt": "WANDERLUST reference photo"
+        },
+        {
+          "url": "/catalog/images/wanderlust-23.png",
+          "alt": "WANDERLUST reference photo"
+        },
+        {
+          "url": "/catalog/images/wanderlust-24.png",
+          "alt": "WANDERLUST reference photo"
+        },
+        {
+          "url": "/catalog/images/wanderlust-25.png",
+          "alt": "WANDERLUST reference photo"
+        },
+        {
+          "url": "/catalog/images/wanderlust-26.png",
+          "alt": "WANDERLUST reference photo"
+        },
+        {
+          "url": "/catalog/images/wanderlust-27.png",
+          "alt": "WANDERLUST reference photo"
+        },
+        {
+          "url": "/catalog/images/wanderlust-28.png",
+          "alt": "WANDERLUST reference photo"
+        }
+      ]
+    },
+    {
+      "id": "pikes-place",
+      "name": "PIKES PLACE",
+      "sku": null,
+      "category": "MIXED BOUQUET",
+      "price": null,
+      "description": "3+ types of flowers. Rotating recipes",
+      "notes": "Choose 3 -8",
+      "images": [
+        {
+          "url": "/catalog/images/pikes-place-1.png",
+          "alt": "PIKES PLACE reference photo"
+        },
+        {
+          "url": "/catalog/images/pikes-place-2.png",
+          "alt": "PIKES PLACE reference photo"
+        },
+        {
+          "url": "/catalog/images/pikes-place-3.png",
+          "alt": "PIKES PLACE reference photo"
+        },
+        {
+          "url": "/catalog/images/pikes-place-4.png",
+          "alt": "PIKES PLACE reference photo"
+        },
+        {
+          "url": "/catalog/images/pikes-place-5.png",
+          "alt": "PIKES PLACE reference photo"
+        },
+        {
+          "url": "/catalog/images/pikes-place-6.png",
+          "alt": "PIKES PLACE reference photo"
+        },
+        {
+          "url": "/catalog/images/pikes-place-7.png",
+          "alt": "PIKES PLACE reference photo"
+        },
+        {
+          "url": "/catalog/images/pikes-place-8.png",
+          "alt": "PIKES PLACE reference photo"
+        },
+        {
+          "url": "/catalog/images/pikes-place-9.png",
+          "alt": "PIKES PLACE reference photo"
+        },
+        {
+          "url": "/catalog/images/pikes-place-10.png",
+          "alt": "PIKES PLACE reference photo"
+        },
+        {
+          "url": "/catalog/images/pikes-place-11.png",
+          "alt": "PIKES PLACE reference photo"
+        },
+        {
+          "url": "/catalog/images/pikes-place-12.png",
+          "alt": "PIKES PLACE reference photo"
+        },
+        {
+          "url": "/catalog/images/pikes-place-13.png",
+          "alt": "PIKES PLACE reference photo"
+        },
+        {
+          "url": "/catalog/images/pikes-place-14.png",
+          "alt": "PIKES PLACE reference photo"
+        },
+        {
+          "url": "/catalog/images/pikes-place-15.png",
+          "alt": "PIKES PLACE reference photo"
+        },
+        {
+          "url": "/catalog/images/pikes-place-16.png",
+          "alt": "PIKES PLACE reference photo"
+        },
+        {
+          "url": "/catalog/images/pikes-place-17.png",
+          "alt": "PIKES PLACE reference photo"
+        },
+        {
+          "url": "/catalog/images/pikes-place-18.png",
+          "alt": "PIKES PLACE reference photo"
+        },
+        {
+          "url": "/catalog/images/pikes-place-19.png",
+          "alt": "PIKES PLACE reference photo"
+        },
+        {
+          "url": "/catalog/images/pikes-place-20.png",
+          "alt": "PIKES PLACE reference photo"
+        },
+        {
+          "url": "/catalog/images/pikes-place-21.png",
+          "alt": "PIKES PLACE reference photo"
+        },
+        {
+          "url": "/catalog/images/pikes-place-22.png",
+          "alt": "PIKES PLACE reference photo"
+        },
+        {
+          "url": "/catalog/images/pikes-place-23.png",
+          "alt": "PIKES PLACE reference photo"
+        },
+        {
+          "url": "/catalog/images/pikes-place-24.png",
+          "alt": "PIKES PLACE reference photo"
+        },
+        {
+          "url": "/catalog/images/pikes-place-25.png",
+          "alt": "PIKES PLACE reference photo"
+        },
+        {
+          "url": "/catalog/images/pikes-place-26.png",
+          "alt": "PIKES PLACE reference photo"
+        }
+      ]
+    },
+    {
+      "id": "garden-harvest",
+      "name": "GARDEN HARVEST",
+      "sku": null,
+      "category": "MIXED BOUQUET",
+      "price": null,
+      "description": "3+ types of flowers. Rotating recipes",
+      "notes": "Choose 3 -8",
+      "images": [
+        {
+          "url": "/catalog/images/garden-harvest-1.png",
+          "alt": "GARDEN HARVEST reference photo"
+        },
+        {
+          "url": "/catalog/images/garden-harvest-2.png",
+          "alt": "GARDEN HARVEST reference photo"
+        },
+        {
+          "url": "/catalog/images/garden-harvest-3.png",
+          "alt": "GARDEN HARVEST reference photo"
+        },
+        {
+          "url": "/catalog/images/garden-harvest-4.png",
+          "alt": "GARDEN HARVEST reference photo"
+        },
+        {
+          "url": "/catalog/images/garden-harvest-5.png",
+          "alt": "GARDEN HARVEST reference photo"
+        },
+        {
+          "url": "/catalog/images/garden-harvest-6.png",
+          "alt": "GARDEN HARVEST reference photo"
+        },
+        {
+          "url": "/catalog/images/garden-harvest-7.png",
+          "alt": "GARDEN HARVEST reference photo"
+        },
+        {
+          "url": "/catalog/images/garden-harvest-8.png",
+          "alt": "GARDEN HARVEST reference photo"
+        },
+        {
+          "url": "/catalog/images/garden-harvest-9.png",
+          "alt": "GARDEN HARVEST reference photo"
+        },
+        {
+          "url": "/catalog/images/garden-harvest-10.png",
+          "alt": "GARDEN HARVEST reference photo"
+        },
+        {
+          "url": "/catalog/images/garden-harvest-11.png",
+          "alt": "GARDEN HARVEST reference photo"
+        },
+        {
+          "url": "/catalog/images/garden-harvest-12.png",
+          "alt": "GARDEN HARVEST reference photo"
+        },
+        {
+          "url": "/catalog/images/garden-harvest-13.png",
+          "alt": "GARDEN HARVEST reference photo"
+        },
+        {
+          "url": "/catalog/images/garden-harvest-14.png",
+          "alt": "GARDEN HARVEST reference photo"
+        },
+        {
+          "url": "/catalog/images/garden-harvest-15.png",
+          "alt": "GARDEN HARVEST reference photo"
+        },
+        {
+          "url": "/catalog/images/garden-harvest-16.png",
+          "alt": "GARDEN HARVEST reference photo"
+        },
+        {
+          "url": "/catalog/images/garden-harvest-17.png",
+          "alt": "GARDEN HARVEST reference photo"
+        },
+        {
+          "url": "/catalog/images/garden-harvest-18.png",
+          "alt": "GARDEN HARVEST reference photo"
+        },
+        {
+          "url": "/catalog/images/garden-harvest-19.png",
+          "alt": "GARDEN HARVEST reference photo"
+        },
+        {
+          "url": "/catalog/images/garden-harvest-20.png",
+          "alt": "GARDEN HARVEST reference photo"
+        },
+        {
+          "url": "/catalog/images/garden-harvest-21.png",
+          "alt": "GARDEN HARVEST reference photo"
+        },
+        {
+          "url": "/catalog/images/garden-harvest-22.png",
+          "alt": "GARDEN HARVEST reference photo"
+        },
+        {
+          "url": "/catalog/images/garden-harvest-23.png",
+          "alt": "GARDEN HARVEST reference photo"
+        },
+        {
+          "url": "/catalog/images/garden-harvest-24.png",
+          "alt": "GARDEN HARVEST reference photo"
+        }
+      ]
+    }
+  ]
+}

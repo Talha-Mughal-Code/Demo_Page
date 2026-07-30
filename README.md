@@ -229,6 +229,64 @@ change, keep a long cache.
 
 ---
 
+## Deploying to Vercel
+
+The app runs on Vercel, but three things have to be right or the backend simply
+isn't there — which shows up as `404` on `POST /api/evaluate`.
+
+**1. There must be a serverless entry point.** Vercel never runs `npm start`, so
+`app.listen()` is never reached. It looks for functions under `api/`.
+`api/index.js` re-exports the Express app (an Express app *is* a `(req, res)`
+handler), and `vercel.json` rewrites `/api/*`, `/uploads/*` and
+`/catalog/images/*` to it. `server/index.js` only binds a port when run directly,
+so the same code serves both cases.
+
+**2. The catalog has to be committed.** It used to be git-ignored as generated
+output, which is right for a local checkout and wrong for a deployment — there is
+no opportunity to run `import:catalog` against a local `.xlsx` in a build. It is
+now tracked (~10 MB, 88 files), and `vercel.json` lists it under `includeFiles`
+so it lands in the function bundle.
+
+```bash
+git add data/catalog api vercel.json
+git commit -m "Add serverless entry point and ship the catalog"
+git push
+```
+
+**3. Set the key in Vercel, not in `.env`.** `.env` is git-ignored and never
+uploaded. Project → Settings → Environment Variables → `OPENAI_API_KEY`, then
+redeploy. `OPENAI_MODEL` and `OPENAI_MAX_OUTPUT_TOKENS` go in the same place if
+you want to override them.
+
+Also check **Settings → Deployment Protection**. If it is on, every request —
+including `/api/*` — gets a `302` to a Vercel SSO login, which looks exactly like
+a broken API.
+
+### What does not survive the move
+
+| | Local | Vercel |
+|---|---|---|
+| Evaluations | work | work |
+| Catalog + reference photos | work | work (bundled) |
+| History / report data | persist in `data/` | **temporary** |
+
+A serverless filesystem is read-only apart from `/tmp`, which is per-instance and
+cleared on cold start. The app detects this, writes to `/tmp`, reports
+`storage.ephemeral` from `/api/health`, and shows a banner saying results won't be
+kept — rather than silently dropping rows. Evaluating photos works normally; the
+report is a live view of whatever that instance still holds, and **Export CSV** is
+the way to keep anything.
+
+To make a deployment durable, point `DATA_DIR` at a mounted writable volume, or
+replace `server/store.js` — it is five functions and the only place storage is
+touched — with a database or blob store.
+
+Long vision calls also need headroom: `vercel.json` sets `maxDuration: 60`, since
+an evaluation with reference photos takes 15–25s and the default cuts off sooner.
+Uploads are stepped down client-side to stay under the 4.5 MB request-body cap.
+
+---
+
 ## No synthetic data
 
 Every row in History and every figure on the report comes from a real model call

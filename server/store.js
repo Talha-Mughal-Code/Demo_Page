@@ -10,9 +10,34 @@ import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-export const DATA_DIR = path.join(__dirname, '..', 'data');
+/**
+ * Where evaluations and their photos are written.
+ *
+ * A serverless filesystem is read-only apart from /tmp, so a deployed instance
+ * cannot write into the project directory. /tmp works, but it is per-instance
+ * and cleared on cold start — history there is a scratch pad, not a record.
+ * `isEphemeral` is surfaced through /api/health so the UI can say so out loud
+ * rather than quietly losing rows.
+ *
+ * Set DATA_DIR to a mounted volume to make a deployment durable.
+ */
+const PROJECT_DATA_DIR = path.join(__dirname, '..', 'data');
+const isServerless = Boolean(process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME);
+
+export const DATA_DIR = process.env.DATA_DIR
+  || (isServerless ? path.join('/tmp', 'shelf-execution-data') : PROJECT_DATA_DIR);
 export const UPLOADS_DIR = path.join(DATA_DIR, 'uploads');
 const RESULTS_FILE = path.join(DATA_DIR, 'results.json');
+
+/** True when writes will not survive a restart of the instance. */
+export const isEphemeral = !process.env.DATA_DIR && isServerless;
+
+export function describeStorage() {
+  if (isEphemeral) {
+    return `${DATA_DIR} (EPHEMERAL — serverless /tmp, cleared on cold start; set DATA_DIR to persist)`;
+  }
+  return DATA_DIR;
+}
 
 const EXT_BY_MIME = {
   'image/jpeg': 'jpg',

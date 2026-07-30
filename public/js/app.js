@@ -10,6 +10,10 @@ const EVAL_QUALITY = 0.86;
 const THUMB_MAX_EDGE = 320;
 const THUMB_QUALITY = 0.7;
 
+// Vercel and most serverless hosts reject request bodies over ~4.5 MB. Leave
+// room for the thumbnail and the JSON envelope alongside the photo.
+const MAX_UPLOAD_CHARS = 3_400_000;
+
 const dom = {
   dropzone: document.getElementById('dropzone'),
   fileInput: document.getElementById('file-input'),
@@ -61,6 +65,7 @@ async function loadHealth() {
         : 'no catalog imported',
     ].join(' · ');
     dom.keyWarning.hidden = health.apiKeyConfigured;
+    showStorageWarning(health.storage);
 
     // Fixing the key means editing .env and restarting the server — neither of
     // which reloads this page. Without re-checking, an open tab keeps showing a
@@ -74,6 +79,36 @@ async function loadHealth() {
   } catch {
     dom.modelHint.textContent = 'Backend unreachable';
   }
+}
+
+/**
+ * On a serverless host the only writable path is /tmp, which is per-instance and
+ * wiped on cold start. Results still work; History and the Report just stop being
+ * a record. Say so rather than letting rows quietly disappear.
+ */
+function showStorageWarning(storage) {
+  const existing = document.getElementById('storage-warning');
+  if (!storage?.ephemeral) {
+    existing?.remove();
+    return;
+  }
+  if (existing) return;
+
+  const banner = el('div', 'banner banner--warn');
+  banner.id = 'storage-warning';
+  banner.style.marginBottom = '14px';
+  banner.setAttribute('role', 'status');
+  banner.append(el('span', 'banner__icon', '⚠'));
+  const body = el('div');
+  body.append(
+    el('div', 'banner__title', 'Evaluations here are temporary'),
+    el('div', 'banner__text',
+      'This deployment can only write to a temporary disk, so history and the report reset '
+      + 'whenever the server goes idle. Evaluating photos works normally — export the CSV from '
+      + 'the report if you need to keep anything.'),
+  );
+  banner.append(body);
+  dom.keyWarning.parentNode.insertBefore(banner, dom.keyWarning.nextSibling);
 }
 
 /* Also re-check whenever the user comes back to the tab. */
@@ -130,10 +165,18 @@ async function acceptFile(file) {
   }
   clearError();
   try {
-    const [full, thumb] = await Promise.all([
+    let [full, thumb] = await Promise.all([
       fileToResizedDataUri(file, EVAL_MAX_EDGE, EVAL_QUALITY),
       fileToResizedDataUri(file, THUMB_MAX_EDGE, THUMB_QUALITY),
     ]);
+
+    // Serverless hosts cap the request body (4.5 MB on Vercel). Step the photo
+    // down until it fits rather than letting the upload fail at the edge with a
+    // 413 the user can do nothing about.
+    for (const [edge, quality] of [[1600, 0.8], [1280, 0.72]]) {
+      if (full.dataUri.length <= MAX_UPLOAD_CHARS) break;
+      full = await fileToResizedDataUri(file, edge, quality);
+    }
     pending = {
       dataUri: full.dataUri,
       thumbUri: thumb.dataUri,
