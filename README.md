@@ -237,9 +237,14 @@ isn't there — which shows up as `404` on `POST /api/evaluate`.
 **1. There must be a serverless entry point.** Vercel never runs `npm start`, so
 `app.listen()` is never reached. It looks for functions under `api/`.
 `api/index.js` re-exports the Express app (an Express app *is* a `(req, res)`
-handler), and `vercel.json` rewrites `/api/*`, `/uploads/*` and
-`/catalog/images/*` to it. `server/index.js` only binds a port when run directly,
-so the same code serves both cases.
+handler), and `server/index.js` only binds a port when run directly, so the same
+code serves both cases.
+
+`vercel.json` rewrites **every** path to that one function rather than splitting
+traffic between Vercel's static layer and the API. The Express app already serves
+`public/`, `/uploads` and `/catalog/images` correctly, so routing everything
+through it means the deployment behaves exactly like `npm start` — one entry
+point, one set of rules, nothing to get out of sync.
 
 **2. The catalog has to be committed.** It used to be git-ignored as generated
 output, which is right for a local checkout and wrong for a deployment — there is
@@ -450,6 +455,33 @@ No build step, no bundler, no CDN. `npm install` pulls exactly two runtime
 dependencies (`express`, `dotenv`); everything else is standard library and
 platform APIs, so the app runs on a store network with no outbound access other
 than the OpenAI call itself.
+
+---
+
+## Branding
+
+The palette is derived from the Falcon Farms logo, which carries exactly three
+colours: green `#3ead49`, red `#d3242c` and near-black `#231f20`.
+
+Two of those are also status colours, which is the one real trap here — a red
+accent anywhere on the page would read as an error. So:
+
+- **Green becomes the brand family**, stepped for contrast. The logo green is
+  2.89:1 on white: fine for accent rules and chart fills, not for text or button
+  labels, so links and primary buttons use `#287130` (6.01:1).
+- **Red is reserved entirely for "fail"** and used nowhere as decoration.
+- **Amber stays "uncertain"** — the one status colour absent from the logo, which
+  is what keeps it visibly a third thing rather than a shade of the other two.
+- The app bar is white with a green rule, because the logo's black wordmark needs
+  a light ground.
+
+Re-validated as a status trio after the change: worst adjacent CVD ΔE **18.1**
+(up from 11.3 on the previous palette), normal-vision ΔE 29.5. Swapping in the
+brand colours made the chart palette measurably more colourblind-safe, not less.
+
+To rebrand again, replace `public/logo-falcon.png` and the `:root` block at the
+top of `public/css/app.css`. The only other place a colour is written down is
+`public/js/shared.js`, which defines the status trio for the charts.
 
 ---
 

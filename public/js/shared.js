@@ -22,8 +22,8 @@ export const CHECK_SHORT = {
  * because it means "we don't know", not "it's wrong".
  */
 export const STATUS = {
-  pass: { label: 'Pass', glyph: '✓', color: '#0ca30c', ink: '#056105' },
-  fail: { label: 'Fail', glyph: '✕', color: '#d03b3b', ink: '#9d2020' },
+  pass: { label: 'Pass', glyph: '✓', color: '#328d3b', ink: '#205825' },
+  fail: { label: 'Fail', glyph: '✕', color: '#d3242c', ink: '#a01a20' },
   uncertain: { label: 'Uncertain', glyph: '?', color: '#fab219', ink: '#7d5200' },
 };
 

@@ -5,34 +5,55 @@
    in daylight rather than a dim theme.
    =========================================================================== */
 
+/* ---------------------------------------------------------------------------
+   Falcon Farms palette.
+
+   The logo carries exactly three colours: green #3ead49, red #d3242c and near
+   black #231f20. Two of those are also status colours, which is a collision
+   risk — a red accent anywhere would read as an error. So:
+
+   · the green becomes the brand family, stepped for contrast (the logo green is
+     2.89:1 on white, fine for accent bars and chart fills, not for text);
+   · the red is reserved entirely for "fail" and used nowhere as decoration;
+   · amber stays as "uncertain", the one status colour not in the logo, which is
+     what keeps it visibly a third thing rather than a shade of the other two.
+
+   Validated as a status trio: worst adjacent CVD ΔE 18.1, normal-vision 29.5 —
+   both comfortably clear. Amber sits below 3:1 on white by design, so every
+   chart segment carries a direct label and a table view.
+   --------------------------------------------------------------------------- */
+
 :root {
   /* Surfaces & ink */
-  --page: #f3f2f1;
+  --page: #f4f5f2;
   --surface: #ffffff;
-  --surface-2: #fafaf9;
-  --ink: #1a1a19;
-  --ink-2: #52514e;
-  --muted: #78766f;
-  --line: #e1e0d9;
-  --line-strong: #c9c7c0;
+  --surface-2: #fafbf9;
+  --ink: #231f20;
+  --ink-2: #55504f;
+  --muted: #7c7573;
+  --line: #e3e0dd;
+  --line-strong: #c8c3bf;
 
-  /* Chrome */
-  --header: #16324f;
-  --header-ink: #ffffff;
-  --brand: #2a78d6;
-  --brand-dark: #1c5cab;
-  --brand-wash: #eaf2fd;
+  /* Chrome — the logo needs a light ground, so the bar is white with a green rule. */
+  --header: #ffffff;
+  --header-ink: #231f20;
+  --brand: #3ead49;
+  --brand-mid: #328d3b;
+  --brand-dark: #287130;
+  --brand-deep: #205825;
+  --brand-wash: #eef9ef;
+  --brand-line: #b4e4b9;
 
-  /* Status palette — reserved. Never reused for a chart series. */
-  --pass: #0ca30c;
-  --pass-ink: #056105;
-  --pass-bg: #e8f6e8;
-  --pass-line: #a8dea8;
+  /* Status palette — reserved. Never reused for a chart series or for chrome. */
+  --pass: #328d3b;
+  --pass-ink: #205825;
+  --pass-bg: #eef9ef;
+  --pass-line: #b4e4b9;
 
-  --fail: #d03b3b;
-  --fail-ink: #9d2020;
-  --fail-bg: #fbeaea;
-  --fail-line: #f0bfbf;
+  --fail: #d3242c;
+  --fail-ink: #a01a20;
+  --fail-bg: #fdeced;
+  --fail-line: #f4c2c4;
 
   --uncertain: #fab219;
   --uncertain-ink: #7d5200;
@@ -40,16 +61,24 @@
   --uncertain-line: #eccf90;
 
   /* Chart chrome */
-  --grid: #e1e0d9;
-  --axis: #c3c2b7;
+  --grid: #e6e3df;
+  --axis: #c8c3bf;
 
   --radius: 8px;
   --radius-sm: 5px;
-  --shadow: 0 1px 2px rgba(11, 11, 11, 0.08), 0 1px 6px rgba(11, 11, 11, 0.04);
+  --shadow: 0 1px 2px rgba(35, 31, 32, 0.08), 0 1px 6px rgba(35, 31, 32, 0.05);
   --font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
 * { box-sizing: border-box; }
+
+/**
+ * The browser's own `[hidden] { display: none }` is the weakest possible rule,
+ * so ANY class that sets `display` beats it — `.banner { display: flex }` kept
+ * the "no API key" warning on screen no matter what the JS set `hidden` to.
+ * This makes the attribute mean what everyone assumes it means.
+ */
+[hidden] { display: none !important; }
 
 html { -webkit-text-size-adjust: 100%; }
 
@@ -79,35 +108,32 @@ a { color: var(--brand-dark); }
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 0 16px;
-  min-height: 52px;
+  padding: 8px 18px;
+  min-height: 56px;
   flex-wrap: wrap;
+  /* The green rule echoes the underline the logo already draws. */
+  border-bottom: 3px solid var(--brand);
+  box-shadow: 0 1px 3px rgba(35, 31, 32, 0.06);
 }
 
 .appbar__brand {
   display: flex;
   align-items: center;
-  gap: 9px;
-  font-weight: 650;
-  letter-spacing: -0.01em;
-  white-space: nowrap;
+  text-decoration: none;
+  flex: none;
 }
 
-.appbar__mark {
-  width: 22px;
-  height: 22px;
-  border-radius: 5px;
-  background: linear-gradient(135deg, #4d9bf0, #1c5cab);
-  display: grid;
-  place-items: center;
-  font-size: 12px;
+.appbar__logo {
+  height: 34px;
+  width: auto;
+  display: block;
 }
 
 .appbar__sub {
-  font-size: 12px;
-  font-weight: 400;
-  color: #b6c8dc;
-  border-left: 1px solid rgba(255, 255, 255, 0.22);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--muted);
+  border-left: 1px solid var(--line-strong);
   padding-left: 12px;
 }
 
@@ -119,17 +145,22 @@ a { color: var(--brand-dark); }
 }
 
 .appbar nav a {
-  color: #cfdcea;
+  color: var(--ink-2);
   text-decoration: none;
   font-size: 13.5px;
-  font-weight: 500;
-  padding: 7px 12px;
+  font-weight: 600;
+  padding: 7px 13px;
   border-radius: var(--radius-sm);
   white-space: nowrap;
 }
 
-.appbar nav a:hover { background: rgba(255, 255, 255, 0.1); color: #fff; }
-.appbar nav a[aria-current="page"] { background: rgba(255, 255, 255, 0.16); color: #fff; }
+.appbar nav a:hover { background: var(--brand-wash); color: var(--brand-deep); }
+
+.appbar nav a[aria-current="page"] {
+  background: var(--brand-wash);
+  color: var(--brand-deep);
+  box-shadow: inset 0 -2px 0 var(--brand);
+}
 
 .wrap {
   max-width: 1180px;
@@ -197,11 +228,11 @@ a.btn { text-decoration: none; }
 .btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
 .btn--primary {
-  background: var(--brand);
-  border-color: var(--brand);
+  background: var(--brand-dark);
+  border-color: var(--brand-dark);
   color: #fff;
 }
-.btn--primary:hover:not(:disabled) { background: var(--brand-dark); border-color: var(--brand-dark); }
+.btn--primary:hover:not(:disabled) { background: var(--brand-deep); border-color: var(--brand-deep); }
 
 .btn--ghost { border-color: transparent; background: transparent; color: var(--brand-dark); }
 .btn--ghost:hover { background: var(--brand-wash); border-color: transparent; }
@@ -270,10 +301,10 @@ label.field > span {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   overflow: hidden;
-  background: #f1f0ee;
+  background: #eeece9;
 }
 
-.preview img { display: block; width: 100%; max-height: 320px; object-fit: contain; background: #26262a; }
+.preview img { display: block; width: 100%; max-height: 320px; object-fit: contain; background: #2a2626; }
 .preview__meta {
   display: flex;
   justify-content: space-between;
@@ -314,7 +345,7 @@ label.field > span {
 }
 
 .skeleton {
-  background: linear-gradient(90deg, #ececeb 25%, #f6f6f5 37%, #ececeb 63%);
+  background: linear-gradient(90deg, #eae7e3 25%, #f6f5f2 37%, #eae7e3 63%);
   background-size: 400% 100%;
   animation: shimmer 1.3s ease infinite;
   border-radius: var(--radius-sm);
@@ -611,7 +642,7 @@ label.field > span {
   height: 60px;
   object-fit: cover;
   border-radius: var(--radius-sm);
-  background: #e6e5e2;
+  background: #e8e5e1;
   border: 1px solid var(--line);
 }
 
@@ -633,7 +664,7 @@ label.field > span {
   width: 9px;
   height: 9px;
   border-radius: 50%;
-  border: 1px solid rgba(11, 11, 11, 0.12);
+  border: 1px solid rgba(35, 31, 32, 0.14);
 }
 .flag-dot--pass { background: var(--pass); }
 .flag-dot--fail { background: var(--fail); }
@@ -815,7 +846,7 @@ table.data td.num { text-align: right; font-variant-numeric: tabular-nums; }
   width: 11px;
   height: 11px;
   border-radius: 3px;
-  border: 1px solid rgba(11, 11, 11, 0.14);
+  border: 1px solid rgba(35, 31, 32, 0.16);
   flex: none;
 }
 .chart-legend__swatch--uncertain { border-style: dashed; border-color: var(--uncertain-ink); }
@@ -834,7 +865,7 @@ svg.chart .mark.is-dim { opacity: 0.35; }
   position: fixed;
   z-index: 90;
   pointer-events: none;
-  background: #201f1e;
+  background: #231f20;
   color: #fff;
   font-size: 12px;
   line-height: 1.4;
@@ -904,6 +935,13 @@ svg.chart .mark.is-dim { opacity: 0.35; }
 
   .check { grid-template-columns: 5px minmax(0, 1fr); }
   .check .chip { grid-column: 2; justify-self: start; margin-top: 8px; }
+
+  /* Title and hint stop competing for one line. */
+  .panel__head { flex-wrap: wrap; align-items: flex-start; row-gap: 2px; }
+  .panel__hint { flex: 1 0 100%; }
+
+  .appbar { padding: 8px 12px; gap: 10px; }
+  .appbar__logo { height: 30px; }
 
   .meta-fields { grid-template-columns: minmax(0, 1fr); }
   /* `flex: 1 1 auto` (not `flex: 1`) — a zero basis stops the row wrapping and

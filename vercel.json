@@ -1,22 +1,12 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "outputDirectory": "public",
   "functions": {
     "api/index.js": {
       "maxDuration": 60,
       "memory": 1024,
-      "includeFiles": "data/catalog/**"
+      "includeFiles": "**"
     }
   },
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/index" },
-    { "source": "/uploads/(.*)", "destination": "/api/index" },
-    { "source": "/catalog/images/(.*)", "destination": "/api/index" }
-  ],
-  "headers": [
-    {
-      "source": "/api/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "no-store, must-revalidate" }]
-    }
+    { "source": "/(.*)", "destination": "/api/index" }
   ]
 }

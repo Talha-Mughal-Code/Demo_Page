@@ -12,11 +12,11 @@
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
 const SURFACE = '#ffffff';
-const INK = '#1a1a19';
-const INK_2 = '#52514e';
-const MUTED = '#78766f';
-const GRID = '#e1e0d9';
-const AXIS = '#c3c2b7';
+const INK = '#231f20';
+const INK_2 = '#55504f';
+const MUTED = '#7c7573';
+const GRID = '#e6e3df';
+const AXIS = '#c8c3bf';
 
 let tooltipEl = null;
 
@@ -200,7 +200,7 @@ export function stackedBarChart(width, { rows, series, labelWidth = 108 }) {
     }));
 
     if (!total) {
-      svg.append(svgEl('rect', { x: plotX, y, width: plotW, height: rowH, rx: 4, fill: '#f1f0ee' }));
+      svg.append(svgEl('rect', { x: plotX, y, width: plotW, height: rowH, rx: 4, fill: '#eeece9' }));
       return;
     }
 
@@ -246,7 +246,7 @@ export function stackedBarChart(width, { rows, series, labelWidth = 108 }) {
    Line — one series over time, crosshair + tooltip.
    ========================================================================== */
 
-export function lineChart(width, { points, color = '#2a78d6', yMax = 100, yLabel = '%', height = 190 }) {
+export function lineChart(width, { points, color = '#328d3b', yMax = 100, yLabel = '%', height = 190 }) {
   const padL = 34;
   const padR = 12;
   const padT = 10;
@@ -311,7 +311,7 @@ export function lineChart(width, { points, color = '#2a78d6', yMax = 100, yLabel
    Column chart — one measure across a small set of categories.
    ========================================================================== */
 
-export function columnChart(width, { bars, color = '#2a78d6', height = 200, valueSuffix = '', labelHeight }) {
+export function columnChart(width, { bars, color = '#328d3b', height = 200, valueSuffix = '', labelHeight }) {
   const padL = 30;
   const padR = 10;
   const padT = 14;
@@ -356,7 +356,7 @@ export function columnChart(width, { bars, color = '#2a78d6', height = 200, valu
     const label = svgEl('foreignObject', { x: padL + i * step, y: padT + plotH + 6, width: step, height: padB - 8 });
     const div = document.createElement('div');
     div.setAttribute('xmlns', 'http://www.w3.org/1999/xhtml');
-    div.style.cssText = 'font:11px system-ui,-apple-system,sans-serif;color:#78766f;text-align:center;line-height:1.2;overflow:hidden;';
+    div.style.cssText = 'font:11px system-ui,-apple-system,sans-serif;color:#7c7573;text-align:center;line-height:1.2;overflow:hidden;';
     div.textContent = b.label;
     label.append(div);
     svg.append(label);

@@ -1,0 +1,9 @@
+node_modules
+.git
+.env
+.env.local
+
+# Runtime data — never deploy local evaluations or uploaded photos.
+# data/catalog/ is NOT ignored: the deployed app needs it to identify products.
+data/results.json
+data/uploads
